@@ -1,0 +1,31 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    background-color: rgba(0, 0, 0, 0.9);
+  
+    .logo-nav {
+      display: flex;
+      align-items: center;
+      nav ul {
+        display: flex;
+        list-style: none;
+        li {
+          margin: 0 10px;
+        }
+      }
+    }
+  
+    .user-actions {
+      display: flex;
+      align-items: center;
+      .icon {
+        margin: 0 10px;
+      }
+      .user-profile {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+  

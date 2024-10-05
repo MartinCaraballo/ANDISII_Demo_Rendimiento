@@ -1,0 +1,21 @@
+<section class="hero">
+    <video
+      id="hero-video"
+      class="hero-video"
+      autoplay
+      muted
+      loop
+      poster="/assets/placeholder.svg"
+    >
+      <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+    </video>
+    <div class="hero-content">
+      <h1>Big Buck Bunny</h1>
+      <p>Una aventura animada que sigue a un conejo gigante en su búsqueda de justicia.</p>
+      <div>
+        <button (click)="togglePlay()">{{ isPlaying ? 'Pausar' : 'Reproducir' }}</button>
+        <button (click)="toggleMute()">{{ isMuted ? 'Activar sonido' : 'Silenciar' }}</button>
+      </div>
+    </div>
+  </section>
+  
