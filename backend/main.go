@@ -2,13 +2,28 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"net/http"
 )
 
 func main() {
-	s := "gopher"
-	fmt.Println("Hello and welcome, %s!", s)
+	// configure the songs directory name and port
+	const moviesDir = "movies"
+	const port = 8080
 
-	for i := 1; i <= 5; i++ {
-		fmt.Println("i =", 100/i)
+	// add a handler for the song files
+	http.Handle("/", addHeaders(http.FileServer(http.Dir(moviesDir))))
+	fmt.Printf("Starting server on %v\n", port)
+	log.Printf("Serving %s on HTTP port: %v\n", moviesDir, port)
+
+	// serve and log errors
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%v", port), nil))
+}
+
+// addHeaders will act as middleware to give us CORS support
+func addHeaders(h http.Handler) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		h.ServeHTTP(w, r)
 	}
 }
