@@ -1,26 +1,19 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 )
 
 func main() {
-	// configure the songs directory name and port
-	const moviesDir = "movies"
 	const port = 8080
+	const hlsDir = "movies"
 
-	// add a handler for the song files
-	http.Handle("/", addHeaders(http.FileServer(http.Dir(moviesDir))))
-	fmt.Printf("Starting server on %v\n", port)
-	log.Printf("Serving %s on HTTP port: %v\n", moviesDir, port)
-
-	// serve and log errors
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%v", port), nil))
+	http.Handle("/", addHeaders(http.FileServer(http.Dir(hlsDir))))
+	log.Printf("Serving HLS files from directory '%s' on port %d\n", hlsDir, port)
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
-// addHeaders will act as middleware to give us CORS support
 func addHeaders(h http.Handler) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
