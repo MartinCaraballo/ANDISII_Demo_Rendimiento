@@ -19,7 +19,7 @@ const VideoCard = (props: propsType)=> {
                         alt={props.videoTitle}
                         width={200}
                         height={260}
-                        className="object-cover sm:w-[300px] 2xl:w-[400px] h-[260px]"
+                        className="object-cover w-[300px] 2xl:w-[400px] h-[260px]"
                     />
                     <div className="grid place-content-center text-center h-20 p-2 max-w-[200px]">
                         <h2 className="text-lg font-semibold text-white">{props.videoTitle.replaceAll('_', ' ')}</h2>
