@@ -3,12 +3,8 @@
 import Hls from "hls.js"
 import { useEffect, useRef } from "react";
 
-type searchParams = {
-    name: string
-}
-
-const Player = ({ name }: searchParams) => {
-    const videoSource = `http://${process.env.NEXT_PUBLIC_API_URL}/${name}/outputlist.m3u8`;
+const Player = ({ searchParams, }: { searchParams: { name: string }}) => {
+    const videoSource = `http://${process.env.NEXT_PUBLIC_API_URL}/${searchParams.name}/playlist.m3u8`;
     const videoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
@@ -20,7 +16,6 @@ const Player = ({ name }: searchParams) => {
                 hls.attachMedia(videoRef.current);
             }
         }
-
         return () => {
             hls.destroy();
         };
