@@ -3,7 +3,7 @@
 import Hls from "hls.js"
 import { useEffect, useRef } from "react";
 
-const Player = ({ searchParams, }: { searchParams: { name: string }}) => {
+const MoviePlayer = ({ searchParams, }: { searchParams: { name: string }}) => {
     const videoSource = `http://${process.env.NEXT_PUBLIC_API_URL}/${searchParams.name}/playlist.m3u8`;
     const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -28,4 +28,4 @@ const Player = ({ searchParams, }: { searchParams: { name: string }}) => {
     );
 }
 
-export default Player;
+export default MoviePlayer;
